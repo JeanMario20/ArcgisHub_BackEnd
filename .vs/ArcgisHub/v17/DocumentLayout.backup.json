@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|c:\\users\\jean9\\documents\\programacion\\arcgishub\\arcgishub.client\\src\\app.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|solutionrelative:arcgishub.client\\src\\app.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|c:\\users\\jean9\\documents\\programacion\\arcgishub\\arcgishub.client\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|solutionrelative:arcgishub.client\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.tsx",
+              "DocumentMoniker": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\App.tsx",
+              "RelativeDocumentMoniker": "arcgishub.client\\src\\App.tsx",
+              "ToolTip": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\App.tsx",
+              "RelativeToolTip": "arcgishub.client\\src\\App.tsx",
+              "ViewState": "AgIAABkAAAAAAAAAAAAgwDkAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-08-05T23:43:11.307Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "index.html",
+              "DocumentMoniker": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\index.html",
+              "RelativeDocumentMoniker": "arcgishub.client\\index.html",
+              "ToolTip": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\index.html",
+              "RelativeToolTip": "arcgishub.client\\index.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-08-05T23:30:42.224Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "Version": 1,
+  "Hash": "DgLgcbT5AVDQ7T/aJb6I6vlvWy/y4NOlqzYFlIrMjeU=",
+  "Source": "ArcgisHub.Server",
+  "BasePath": "_content/ArcgisHub.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\arcgishub.client.esproj",
+      "Version": 2,
+      "Source": "arcgishub.client",
+      "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
