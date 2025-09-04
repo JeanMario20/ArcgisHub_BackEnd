@@ -1,0 +1,18 @@
+#bufferContainerInfo {
+    height: 500px;
+    width: 400px;
+    position: fixed;
+    background-color: white;
+    top: 150px;
+    border-radius: 20px;
+    color: black;
+}
+
+#bufferOptionsInput {
+    padding: 20px;
+    width: 100%;
+    padding: 8px 0;
+    display: inline-block;
+    /* border: 1px solid #ccc;
+    box-sizing: border-box; */
+}

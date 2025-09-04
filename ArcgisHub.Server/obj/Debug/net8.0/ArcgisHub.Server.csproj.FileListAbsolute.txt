@@ -37,3 +37,5 @@ C:\Users\jean9\Documents\programacion\ArcgisHub\ArcgisHub.Server\obj\Debug\net8.
 C:\Users\jean9\Documents\programacion\ArcgisHub\ArcgisHub.Server\obj\Debug\net8.0\ArcgisHub.Server.pdb
 C:\Users\jean9\Documents\programacion\ArcgisHub\ArcgisHub.Server\obj\Debug\net8.0\ArcgisHub.Server.genruntimeconfig.cache
 C:\Users\jean9\Documents\programacion\ArcgisHub\ArcgisHub.Server\obj\Debug\net8.0\ref\ArcgisHub.Server.dll
+C:\Users\jean9\Documents\programacion\ArcgisHub\ArcgisHub.Server\obj\Debug\net8.0\ArcgisHub.Server.sourcelink.json
+C:\Users\jean9\Documents\programacion\ArcgisHub\ArcgisHub.Server\bin\Debug\net8.0\Newtonsoft.Json.dll

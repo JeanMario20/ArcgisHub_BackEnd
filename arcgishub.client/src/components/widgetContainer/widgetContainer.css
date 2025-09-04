@@ -1,0 +1,12 @@
+#widgetContainer {
+    position: absolute;
+    width: 249px;
+    height: 70px;
+    background-color: grey;
+    top: 10px;
+    margin-left: 10px;
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
