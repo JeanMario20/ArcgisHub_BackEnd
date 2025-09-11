@@ -15,34 +15,39 @@ function ShowMap({ children }: Props) {
     const { viewRefs, clickRef, bufferLayer } = useMap();
 
     useEffect(() => {
+        if (!viewRefs.current || clickRef.current) return;
+
         const map = new Map({
-            basemap: "topo-vector"
+            basemap: "gray-vector"
         });
 
         const view = new MapView({
-            container: "viewDiv",
+            container: viewRefs.current,
             map: map,
             zoom: 10,
             center: [-92.93028, 17.98689],// Coordenadas de ejemplo
         });
-
-        //map.add(bufferLayer); //arreglar aqui
-        if (bufferLayer.current) {
+        if (bufferLayer.current && !map.layers.includes(bufferLayer.current)) {
             map.add(bufferLayer.current);
         }
+        
         clickRef.current = view;
 
-        const anotherMap = document.getElementsByClassName('esri-view-user-storage');
+        /*const anotherMap = document.getElementsByClassName('esri-view-user-storage');
 
         while (anotherMap.length > 0) {
             anotherMap[0].parentNode?.removeChild(anotherMap[0])
-        }
-
-    }, [clickRef]);
+        }*/  
+        /*return () => {
+            view.destroy()
+            clickRef.current = null
+        };*/
+    }, []);
 
 
     return (
-        <div ref={viewRefs} /*onClick={}*/ id="viewDiv" style={{ width: "247vh" }}>{children}</div>
+        <div ref={viewRefs}
+        id="viewDiv" style={{ width: "247vh" }}>{children}</div>
     )
 }
 

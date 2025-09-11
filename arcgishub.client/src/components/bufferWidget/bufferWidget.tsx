@@ -11,11 +11,16 @@ interface Props {
     onClick: (event: MouseEvent<HTMLButtonElement>) => void;
     children: ReactNode;
     isDrawPolyline: boolean;
-    setIsDrawPolyline: React.Dispatch<React.SetStateAction<boolean>>,
-    coordenadas: number[],
+    //setIsDrawPolyline: React.Dispatch<React.SetStateAction<boolean>>,
+    //coordenadas: number[],
 }
 
-function Button({ onClick, children }: Props) {
+interface ButtonProps {
+    onClick: React.MouseEventHandler<HTMLButtonElement>;
+    children: React.ReactNode;
+}
+
+function Button({ onClick, children }: ButtonProps) {
     return (
         <button onClick={onClick}>
             {children}
@@ -24,10 +29,7 @@ function Button({ onClick, children }: Props) {
 }
 
 
-
-
-
-function Div({ children }: Props) {
+function Div({ children }) {
     return (
         <div id='bufferContainerInfo'>{children}</div>
     )
@@ -38,7 +40,7 @@ function BufferWidget() {
     const [containerVisible, setContainerVisible] = useState(false);
     const [isDrawPolyline, setIsDrawPolyline] = useState<boolean>(false);
     const [actualizar, setActualizar] = useState(0);
-    let { clickRef } = useMap();
+    const { clickRef } = useMap();
     const isDrawPolylineRef = useRef(isDrawPolyline);
     const { bufferLayer } = useMap()
     //const view = clickRef;
@@ -51,10 +53,9 @@ function BufferWidget() {
         isDrawPolylineRef.current = isDrawPolyline;
         if (isDrawPolylineRef.current) {
             const handlerClick = clickRef.current?.on("click", (event) => {
-                DibujarPolyline(clickRef, event, coordenadasPoints, trazoCounter, bufferLayer); //estoy guardando el dibujo en bufferLayer ???? 
+                DibujarPolyline(clickRef, event, coordenadasPoints, trazoCounter, bufferLayer); //estoy guardando el dibujo en bufferLayer? -> Si 
                 coordenadasPolyline.push([event.mapPoint.longitude, event.mapPoint.latitude]);
                 setActualizar(prev => prev + 1)
-                //sustituye todos los view por clickRef por que no estas modificando el original si no las copias.
 
             })
             const handlerDoubleClick = clickRef.current?.on("double-click", (event) => {
@@ -70,9 +71,9 @@ function BufferWidget() {
             return;
         }
 
-    }, [isDrawPolyline, clickRef, coordenadasPoints, trazoCounter, bufferLayer, coordenadasPolyline])
+    }, [isDrawPolyline])
 
-    function ButtonAnalisis({ param, children }) {
+    function ButtonAnalisis({ param, children }: ButtonProps) {
         return (
             <button onClick={() => EjecutarAnalisis()}>
                 {children}
@@ -92,6 +93,9 @@ function BufferWidget() {
 
     function retrocederDibujo() {
         const graphics = bufferLayer.current?.graphics
+        if (!graphics || graphics.length === 0) return;
+
+
         const arrayCoords: number[][] = []
         const polylineObjec = graphics?.find((layer) => {
             return layer.geometry?.type == "polyline"
@@ -121,7 +125,6 @@ function BufferWidget() {
             ]
         };
 
-
         const lineSymbol = {
             type: "simple-line",
             color: [226, 119, 40],
@@ -149,32 +152,28 @@ function BufferWidget() {
     return (
         <>
             <Button onClick={() => setContainerVisible(!containerVisible)}>Buffer</Button>
-            {containerVisible ?
-                <>
-                    <Div>
-                        <div id="buttonContainer">
-                            <Button onClick={() => setIsDrawPolyline(prev => !prev)}>Polyline</Button>
-                            <Button onClick={borrarPolyline}>Borrar todo</Button>
-                            <Button onClick={retrocederDibujo}>Retroceder</Button>
-                        </div>
-                        <div id="bufferOptionsForm">
-                            <label id="bufferOptionsLabels" htmlFor="someText1">ejemplo</label>
-                            <input id="bufferOptionsInput" type="text" name="nameText1" placeholder="escribe algo" />
+            {containerVisible &&
+                <Div>
+                <div id="buttonContainer">
+                    <Button onClick={() => setIsDrawPolyline(prev => !prev)}>Polyline</Button>
+                    <Button onClick={borrarPolyline}>Borrar todo</Button>
+                    <Button onClick={retrocederDibujo}>Retroceder</Button>
+                </div>
+                <div id="bufferOptionsForm">
+                    <label id="bufferOptionsLabels" htmlFor="someText1">ejemplo</label>
+                    <input id="bufferOptionsInput" type="text" name="nameText1" placeholder="escribe algo" />
 
-                            <label id="bufferOptionsLabels" htmlFor="someText2">ejemplo</label>
-                            <input id="bufferOptionsInput" type="text" name="nameText2" placeholder="escribe algo" />
+                    <label id="bufferOptionsLabels" htmlFor="someText2">ejemplo</label>
+                    <input id="bufferOptionsInput" type="text" name="nameText2" placeholder="escribe algo" />
 
-                            <label id="bufferOptionsLabels" htmlFor="someText2">ejemplo</label>
-                            <input id="bufferOptionsInput" type="text" name="nameText3" placeholder="escribe algo" />
+                    <label id="bufferOptionsLabels" htmlFor="someText2">ejemplo</label>
+                    <input id="bufferOptionsInput" type="text" name="nameText3" placeholder="escribe algo" />
 
-                            <ButtonAnalisis param={bufferLayer}>Ejecutar Analisis</ButtonAnalisis>
-                            {activateBuffer && <CreateBuffer />}
+                    <ButtonAnalisis param={bufferLayer}>Ejecutar Analisis</ButtonAnalisis>
+                    {activateBuffer && <CreateBuffer />}
 
-                        </div>
-                    </Div>
-                </>
-                :
-                <div></div>}
+                </div>
+                </Div>}
         </>
     )
 }
@@ -188,6 +187,10 @@ export default function BufferTemplate() {
 function DibujarPolyline(view: RefObject<__esri.MapView | null>, event: __esri.ViewClickEvent, coordenadas: number[][], ref: { trazo: number }, bufferLayer: React.RefObject<GraphicsLayer | null>) {
 
     const graphics = bufferLayer.current?.graphics
+    const longitud = event.mapPoint.longitude
+    const latitud = event.mapPoint.latitude
+    if (!graphics) return
+
     const polylineObject = graphics?.find((layer) => {
         return layer.geometry?.type == "polyline"
     })
@@ -196,9 +199,9 @@ function DibujarPolyline(view: RefObject<__esri.MapView | null>, event: __esri.V
         type: "point", // autocasts as new Point()
         longitude: event.mapPoint.longitude,
         latitude: event.mapPoint.latitude,
-    };
+    }; 
 
-    coordenadas.push([event.mapPoint.longitude, event.mapPoint.latitude]);
+    
 
     const markerSymbol = {
         type: "simple-marker",
@@ -210,7 +213,7 @@ function DibujarPolyline(view: RefObject<__esri.MapView | null>, event: __esri.V
     };
 
     const pointAtt = {
-        id: ref.trazo,
+
         Name: "user",
         owner: "user",
         space: "number",
@@ -219,7 +222,7 @@ function DibujarPolyline(view: RefObject<__esri.MapView | null>, event: __esri.V
         type: "point"
     };
 
-    ref.trazo++;
+    
 
     const pointGraphic = new Graphic({
         geometry: point,
@@ -229,6 +232,7 @@ function DibujarPolyline(view: RefObject<__esri.MapView | null>, event: __esri.V
 
     //view.current?.graphics.add(pointGraphic); <-- dibujar en el mapa
     graphics?.add(pointGraphic);
+    coordenadas.push([longitud, latitud]);
     const countGraphics = bufferLayer.current?.graphics.length;
 
 
@@ -236,7 +240,7 @@ function DibujarPolyline(view: RefObject<__esri.MapView | null>, event: __esri.V
 
         const polyline = new Polyline({
             type: "polyline",
-            paths: [event.mapPoint.longitude, event.mapPoint.latitude]
+            paths: [longitud, latitud]
         })
 
 
@@ -265,13 +269,9 @@ function DibujarPolyline(view: RefObject<__esri.MapView | null>, event: __esri.V
     if (countGraphics != undefined && countGraphics > 1 && bufferLayer.current?.graphics.items[1].geometry) {
 
         if (polylineObject && polylineObject.geometry instanceof Polyline) {
-            coordenadas = polylineObject.geometry?.paths[0]
-            coordenadas.push([event.mapPoint.longitude, event.mapPoint.latitude])
-            const polyline = new Polyline({
-                type: "polyline",
-                paths: [coordenadas]
-            })
-            polylineObject.geometry = polyline;
+
+            const PathsActualizado = [...polylineObject.geometry.paths[0], [longitud, latitud]]
+            polylineObject.geometry = new Polyline({ paths: [PathsActualizado] })
         }
 
     }

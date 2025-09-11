@@ -14,8 +14,9 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+//builder.Services.AddEndpointsApiExplorer(); quitar comentario cuando vuevla a usar endpoints en swagger
+//builder.Services.AddSwaggerGen(); quitar comentario cuando vuevla a usar endpoints en swagger
 
 var app = builder.Build();
 app.UseCors("AllowAll");
@@ -36,6 +37,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapFallbackToFile("/index.html");
+//app.MapFallbackToFile("/index.html");
 
 app.Run();

@@ -1,6 +1,6 @@
 import type MapView from "@arcgis/core/views/MapView";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
-import React, { createContext, useContext, useRef, useState } from "react";
+import React, { createContext, useContext, useRef, useState, useMemo } from "react";
 
 /*interface layersValues{
     bufferLayer: React.RefObject<GraphicsLayer | null>,
@@ -25,25 +25,24 @@ const ViewContext = createContext<MapContextValue | undefined>(undefined);
 export function useMap() {
     const context = useContext(ViewContext);
     if (context === undefined) {
-        throw new Error('useMap must be used withing a MapCONTEXT provider');
+        throw new Error('useMap must be used within a MapContext provider');
     }
     return context;
 }
 
 export function MapContext({ children }: Props) {
-    const viewRefs = useRef<HTMLInputElement | null>(null);
+    const viewRefs = useRef<HTMLDivElement | null>(null);
     const [isDrawing, setIsDrawing] = useState<boolean>(true);
     const clickRef = useRef<MapView | null>(null);
-    const bufferLayer = useRef<GraphicsLayer>(new GraphicsLayer());
 
-    const layer = new GraphicsLayer({
-        id: 'bufferLayerId',  // Identificador único
+    const layer = useMemo(() => new GraphicsLayer({
+        id: 'bufferLayerId',
         title: 'bufferLayers Draws',
-        listMode: 'show',       // Aparece en la lista de capas
-        visible: true           // Visibilidad inicial
-    });
+        listMode: 'show',
+        visible: true
+    }), []);
 
-    bufferLayer.current = layer;
+    const bufferLayer = useRef<GraphicsLayer>(layer);
 
     const value = {
         viewRefs,

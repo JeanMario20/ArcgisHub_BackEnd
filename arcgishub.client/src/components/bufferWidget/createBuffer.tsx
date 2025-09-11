@@ -3,27 +3,33 @@ import Polyline from "@arcgis/core/geometry/Polyline";
 import Graphic from "@arcgis/core/Graphic";
 import { useMap } from "../../context/viewContext";
 import type { RefObject } from "react"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import type { GeometryUnion } from "@arcgis/core/geometry";
 import * as geometryEngineAsync from "@arcgis/core/geometry/geometryEngineAsync.js";
 import SimpleFillSymbol from "@arcgis/core/symbols/SimpleFillSymbol";
 
 
 
-const CreateBuffer = () => {
-    //const { clickRef } = useMap()
+const CreateBuffer = () => {    
     const { bufferLayer } = useMap()
+    const hasRun = useRef<boolean>(false)
 
     useEffect(() => {
-        generarBufferGraphic()
-
-    },)
+        if (!hasRun.current) {
+            hasRun.current = true;
+            generarBufferGraphic()
+        }
+    },[])
 
     const generarBufferGraphic = async () => {
-        const view = bufferLayer.current?.graphics
-        const geometry: GeometryUnion = view?.find((layer) => {
+        const graphics = bufferLayer.current?.graphics
+        if(!graphics || graphics.length === 0) return 
+
+
+        const geometry: GeometryUnion = graphics?.find((layer) => {
             return layer.geometry?.type == "polyline"
         })
+        if (!geometry || !(geometry.geometry instanceof Polyline)) return
         
         try {
             const bufferGeo = await geometryEngineAsync.geodesicBuffer(geometry.geometry, 100, "meters")
@@ -46,8 +52,7 @@ const CreateBuffer = () => {
                 symbol: bufferSymbol,
                 attributes: bufferAtt
             });
-            view?.add(bufferGraphic)
-            console.log(view);
+            graphics?.add(bufferGraphic) //mandarlo a otra capa diferente ? 
             return bufferGeo
         } catch (error) {
             console.error("Error al generar buffer ", error)
@@ -62,6 +67,7 @@ const CreateBuffer = () => {
 export default CreateBuffer; 
 
 
+//Ejemplo de crear una api
 //import { urlUtils } from "@arcgis/core/urlUtils";
 //polyline: __esri.Collection<Graphic> | undefined): Promise<Props>
 /*interface Props {
