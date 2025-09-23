@@ -2,35 +2,42 @@
 import Polyline from "@arcgis/core/geometry/Polyline";
 import Graphic from "@arcgis/core/Graphic";
 import { useMap } from "../../context/viewContext";
-import type { RefObject } from "react"
+
 import { useEffect, useRef } from "react"
 import type { GeometryUnion } from "@arcgis/core/geometry";
 import * as geometryEngineAsync from "@arcgis/core/geometry/geometryEngineAsync.js";
 import SimpleFillSymbol from "@arcgis/core/symbols/SimpleFillSymbol";
 
 
-
-const CreateBuffer = () => {    
-    const { bufferLayer } = useMap()
+const CreateBuffer = () => {
+    const { bufferLayer, globalLayer } = useMap()
     const hasRun = useRef<boolean>(false)
+    const graphics = useRef<__esri.Collection<__esri.Graphic> | null>(null);
+    const globalLay = useRef<__esri.Collection<__esri.Graphic> | null>(null);
 
     useEffect(() => {
         if (!hasRun.current) {
             hasRun.current = true;
-            generarBufferGraphic()
+            generarBufferGraphic(graphics, globalLay);
+            BorrarGraphicsCanvas(graphics)
         }
     },[])
 
-    const generarBufferGraphic = async () => {
-        const graphics = bufferLayer.current?.graphics
-        if(!graphics || graphics.length === 0) return 
+    const generarBufferGraphic = async (graphics: React.RefObject<__esri.Collection<__esri.Graphic> | null>,globalLay: React.RefObject<__esri.Collection<__esri.Graphic> | null>)=> {
+        if (!bufferLayer.current) return
+        graphics.current = bufferLayer.current.graphics ?? null
+        if (!globalLayer.current) return
+        globalLay.current = globalLayer.current.graphics ?? null
+
+        
 
 
-        const geometry: GeometryUnion = graphics?.find((layer) => {
+        const geometry: GeometryUnion = graphics.current?.find((layer) => {
             return layer.geometry?.type == "polyline"
         })
+
         if (!geometry || !(geometry.geometry instanceof Polyline)) return
-        
+        polylineGlobal(geometry);
         try {
             const bufferGeo = await geometryEngineAsync.geodesicBuffer(geometry.geometry, 100, "meters")
             const bufferAtt = {
@@ -52,14 +59,29 @@ const CreateBuffer = () => {
                 symbol: bufferSymbol,
                 attributes: bufferAtt
             });
-            graphics?.add(bufferGraphic) //mandarlo a otra capa diferente ? 
+
+            globalLay.current?.add(bufferGraphic) 
+
             return bufferGeo
         } catch (error) {
             console.error("Error al generar buffer ", error)
             return null
         }
     }
-    
+
+    function BorrarGraphicsCanvas(graphics: React.RefObject<__esri.Collection<__esri.Graphic> | null>){
+        if (!bufferLayer.current) return
+        graphics.current = bufferLayer.current.graphics ?? null
+
+        graphics.current?.removeAll();
+    }
+
+    function polylineGlobal(polyline: __esri.Graphic) {
+        if (!globalLayer.current) return
+        globalLay.current = globalLayer.current.graphics ?? null
+
+        globalLay.current?.add(polyline)
+    }
     
     return null
 }

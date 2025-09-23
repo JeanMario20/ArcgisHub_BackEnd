@@ -12,7 +12,8 @@ interface Props {
 
 function ShowMap({ children }: Props) {
 
-    const { viewRefs, clickRef, bufferLayer } = useMap();
+    const { viewRefs, clickRef, bufferLayer, globalLayer } = useMap();
+    const layerToAdd = [bufferLayer, globalLayer]
 
     useEffect(() => {
         if (!viewRefs.current || clickRef.current) return;
@@ -27,9 +28,13 @@ function ShowMap({ children }: Props) {
             zoom: 10,
             center: [-92.93028, 17.98689],// Coordenadas de ejemplo
         });
-        if (bufferLayer.current && !map.layers.includes(bufferLayer.current)) {
-            map.add(bufferLayer.current);
-        }
+
+
+        layerToAdd.forEach(ref => {
+            if (ref.current) {
+                map.add(ref.current);
+            }
+        })
         
         clickRef.current = view;
 

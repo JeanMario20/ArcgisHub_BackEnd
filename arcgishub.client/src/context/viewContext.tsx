@@ -18,6 +18,7 @@ interface MapContextValue {
     //divElement: () => void;
     clickRef: React.RefObject<MapView | null>
     bufferLayer: React.RefObject<GraphicsLayer | null>,
+    globalLayer: React.RefObject<GraphicsLayer | null>
 }
 
 const ViewContext = createContext<MapContextValue | undefined>(undefined);
@@ -40,9 +41,16 @@ export function MapContext({ children }: Props) {
         title: 'bufferLayers Draws',
         listMode: 'show',
         visible: true
-    }), []);
+    }),[]);
+    const global = useMemo(() => new GraphicsLayer({
+        id: 'globalLayerid',
+        title: 'globalLayers',
+        listMode: 'show',
+        visible: true
+    }),[])
 
     const bufferLayer = useRef<GraphicsLayer>(layer);
+    const globalLayer = useRef<GraphicsLayer>(global)
 
     const value = {
         viewRefs,
@@ -51,6 +59,7 @@ export function MapContext({ children }: Props) {
         //divElement,
         clickRef,
         bufferLayer,
+        globalLayer,
     }
 
     return (
