@@ -8,8 +8,11 @@ import type { GeometryUnion } from "@arcgis/core/geometry";
 import * as geometryEngineAsync from "@arcgis/core/geometry/geometryEngineAsync.js";
 import SimpleFillSymbol from "@arcgis/core/symbols/SimpleFillSymbol";
 
+type Props = {
+    setBuffer: () => void
+}
 
-const CreateBuffer = () => {
+const CreateBuffer = ({ setBuffer }: Props) => {
     const { bufferLayer, globalLayer } = useMap()
     const hasRun = useRef<boolean>(false)
     const graphics = useRef<__esri.Collection<__esri.Graphic> | null>(null);
@@ -18,8 +21,9 @@ const CreateBuffer = () => {
     useEffect(() => {
         if (!hasRun.current) {
             hasRun.current = true;
-            generarBufferGraphic(graphics, globalLay);
+            generarBufferGraphic(graphics, globalLay)
             BorrarGraphicsCanvas(graphics)
+            setBuffer()
         }
     },[])
 
@@ -82,7 +86,7 @@ const CreateBuffer = () => {
 
         globalLay.current?.add(polyline)
     }
-    
+
     return null
 }
 

@@ -81,6 +81,7 @@ function BufferWidget() {
         )
     }
     function EjecutarAnalisis() {
+        console.log(isDrawPolylineRef.current)
         setActivateBuffer(true)
     }
 
@@ -91,6 +92,9 @@ function BufferWidget() {
 
     }
 
+    function setChangedBuffer() {
+        setActivateBuffer(false);
+    }
     function retrocederDibujo() {
         const graphics = bufferLayer.current?.graphics
         if (!graphics || graphics.length === 0) return;
@@ -169,8 +173,8 @@ function BufferWidget() {
                     <label id="bufferOptionsLabels" htmlFor="someText2">ejemplo</label>
                     <input id="bufferOptionsInput" type="text" name="nameText3" placeholder="escribe algo" />
 
-                    <ButtonAnalisis param={bufferLayer}>Ejecutar Analisis</ButtonAnalisis>
-                    {activateBuffer && <CreateBuffer />}
+                        <ButtonAnalisis param={bufferLayer}>Ejecutar Analisis</ButtonAnalisis>
+                        {activateBuffer && <CreateBuffer setBuffer={setChangedBuffer} />}
 
                 </div>
                 </Div>}

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ArcgisHub.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e70f388ac4082dc3e291bfd39c456ca57a7b8906")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5db022c5868c2b53134cf1c1ffe9ca1b1f9eaac")]
 [assembly: System.Reflection.AssemblyProductAttribute("ArcgisHub.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ArcgisHub.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
