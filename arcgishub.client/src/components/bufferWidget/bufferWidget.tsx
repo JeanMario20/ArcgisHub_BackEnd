@@ -4,8 +4,19 @@ import { useMap } from '../../context/viewContext';
 import Graphic from "@arcgis/core/Graphic.js"
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 import Polyline from "@arcgis/core/geometry/Polyline";
-import  CreateBuffer from './CreateBuffer';
+import CreateBuffer from './CreateBuffer';
+import DrawPoint from './DrawPoint';
 
+interface collection {
+    view: RefObject<__esri.MapView | null>,
+    event: __esri.ViewClickEvent,
+    coordenadasPoints: number[][],
+    bufferLayer: React.RefObject<GraphicsLayer | null>,
+}
+
+interface typeAnalisys {
+    type: string
+}
 
 interface Props {
     onClick: (event: MouseEvent<HTMLButtonElement>) => void;
@@ -39,39 +50,52 @@ function Div({ children }) {
 function BufferWidget() {
     const [containerVisible, setContainerVisible] = useState(false);
     const [isDrawPolyline, setIsDrawPolyline] = useState<boolean>(false);
+    const [isDrawPoint, setIsDrawPoint] = useState<boolean>(false);
     const [actualizar, setActualizar] = useState(0);
-    const { clickRef } = useMap();
-    const isDrawPolylineRef = useRef(isDrawPolyline);
+    const { clickRef } = useMap()
+    const isDrawPolylineRef = useRef(isDrawPolyline)
+    const isDrawPointRef = useRef(isDrawPoint)
     const { bufferLayer } = useMap()
     //const view = clickRef;
     const coordenadasPoints: number[][] = [];
     const coordenadasPolyline: number[] = []
     const trazoCounter = { trazo: 0 };
     const [activateBuffer, setActivateBuffer] = useState(false);
-
+    const [typeBufferAnalisys, setTypeBufferAnalisys] = useState<typeAnalisys>({ type: "" });
+    //setTypeBufferAnalisys("PolylineBuffer");
     useEffect(() => {
         isDrawPolylineRef.current = isDrawPolyline;
-        if (isDrawPolylineRef.current) {
-            const handlerClick = clickRef.current?.on("click", (event) => {
+        isDrawPointRef.current = isDrawPoint;
+        const handlerClick = clickRef.current?.on("click", (event) => {
+            if (isDrawPolylineRef.current) {
                 DibujarPolyline(clickRef, event, coordenadasPoints, trazoCounter, bufferLayer); //estoy guardando el dibujo en bufferLayer? -> Si 
                 coordenadasPolyline.push([event.mapPoint.longitude, event.mapPoint.latitude]);
                 setActualizar(prev => prev + 1)
+                return 
+            }
+            if (isDrawPointRef.current) {
+                const props: collection = {
+                    /*clickRef*/
+                    event,
+                    coordenadasPoints,
+                    bufferLayer,
+                }
+                DrawPoint(props)
+                return 
+            }
 
-            })
-            const handlerDoubleClick = clickRef.current?.on("double-click", (event) => {
-                setIsDrawPolyline(prev => !prev);
+        })
+        const handlerDoubleClick = clickRef.current?.on("double-click", (event) => {
+            setIsDrawPolyline(prev => !prev);
 
-            })
+        })
 
-            return () => {
-                handlerClick?.remove();
-                handlerDoubleClick?.remove();
-            };
-        } else {
-            return;
-        }
+        return () => {
+            handlerClick?.remove();
+            handlerDoubleClick?.remove();
+        };
 
-    }, [isDrawPolyline])
+    }, [isDrawPolyline, isDrawPoint, typeBufferAnalisys])
 
     function ButtonAnalisis({ param, children }: ButtonProps) {
         return (
@@ -81,7 +105,6 @@ function BufferWidget() {
         )
     }
     function EjecutarAnalisis() {
-        console.log(isDrawPolylineRef.current)
         setActivateBuffer(true)
     }
 
@@ -149,8 +172,18 @@ function BufferWidget() {
         });
 
         graphics?.add(polylineGraphics);
+    }
 
+    function startDrawPoint() {
+        setIsDrawPoint(true);
+        setTypeBufferAnalisys({ type: "pointBuffer" })
+        setIsDrawPolyline(false);
+    }
 
+    function startDrawPolyline() {
+        setIsDrawPoint(false)
+        setTypeBufferAnalisys({ type: "polylineBuffer" });
+        setIsDrawPolyline(true)
     }
 
     return (
@@ -158,8 +191,9 @@ function BufferWidget() {
             <Button onClick={() => setContainerVisible(!containerVisible)}>Buffer</Button>
             {containerVisible &&
                 <Div>
-                <div id="buttonContainer">
-                    <Button onClick={() => setIsDrawPolyline(prev => !prev)}>Polyline</Button>
+                    <div id="buttonContainer">
+                    <Button onClick={startDrawPolyline}>Polyline</Button>
+                    <Button onClick={startDrawPoint}>Point</Button>
                     <Button onClick={borrarPolyline}>Borrar todo</Button>
                     <Button onClick={retrocederDibujo}>Retroceder</Button>
                 </div>
@@ -174,7 +208,7 @@ function BufferWidget() {
                     <input id="bufferOptionsInput" type="text" name="nameText3" placeholder="escribe algo" />
 
                         <ButtonAnalisis param={bufferLayer}>Ejecutar Analisis</ButtonAnalisis>
-                        {activateBuffer && <CreateBuffer setBuffer={setChangedBuffer} />}
+                        {activateBuffer && <CreateBuffer setBuffer={setChangedBuffer} typeAnalysis={typeBufferAnalisys.type} />}
 
                 </div>
                 </Div>}
@@ -204,7 +238,6 @@ function DibujarPolyline(view: RefObject<__esri.MapView | null>, event: __esri.V
         longitude: event.mapPoint.longitude,
         latitude: event.mapPoint.latitude,
     }; 
-
     
 
     const markerSymbol = {
@@ -258,7 +291,7 @@ function DibujarPolyline(view: RefObject<__esri.MapView | null>, event: __esri.V
             Name: "temp",
             owner: "temp",
             length: "temp",
-            trazo: 0
+            type: "polylineBuffer",
         };
 
         const polylineGraphics = new Graphic({

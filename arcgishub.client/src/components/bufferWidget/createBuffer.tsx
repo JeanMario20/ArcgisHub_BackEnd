@@ -1,4 +1,4 @@
-//import type Polyline from "@arcgis/core/geometry/Polyline";
+ //import type Polyline from "@arcgis/core/geometry/Polyline";
 import Polyline from "@arcgis/core/geometry/Polyline";
 import Graphic from "@arcgis/core/Graphic";
 import { useMap } from "../../context/viewContext";
@@ -9,10 +9,11 @@ import * as geometryEngineAsync from "@arcgis/core/geometry/geometryEngineAsync.
 import SimpleFillSymbol from "@arcgis/core/symbols/SimpleFillSymbol";
 
 type Props = {
-    setBuffer: () => void
+    setBuffer: () => void,
+    typeAnalysis: string
 }
 
-const CreateBuffer = ({ setBuffer }: Props) => {
+const CreateBuffer = ({ setBuffer, typeAnalysis }: Props) => {
     const { bufferLayer, globalLayer } = useMap()
     const hasRun = useRef<boolean>(false)
     const graphics = useRef<__esri.Collection<__esri.Graphic> | null>(null);
@@ -21,26 +22,36 @@ const CreateBuffer = ({ setBuffer }: Props) => {
     useEffect(() => {
         if (!hasRun.current) {
             hasRun.current = true;
-            generarBufferGraphic(graphics, globalLay)
+            generarBuffer(graphics, globalLay, typeAnalysis);
             BorrarGraphicsCanvas(graphics)
             setBuffer()
         }
-    },[])
+    }, [])
 
-    const generarBufferGraphic = async (graphics: React.RefObject<__esri.Collection<__esri.Graphic> | null>,globalLay: React.RefObject<__esri.Collection<__esri.Graphic> | null>)=> {
+    const generarBufferGraphicPoint = async (graphic: React.RefObject<__esri.Collection<__esri.Graphic> | null>, globalLay: React.RefObject<__esri.Collection<__esri.Graphic> | null>) => {
         if (!bufferLayer.current) return
         graphics.current = bufferLayer.current.graphics ?? null
         if (!globalLayer.current) return
         globalLay.current = globalLayer.current.graphics ?? null
 
-        
-
-
         const geometry: GeometryUnion = graphics.current?.find((layer) => {
-            return layer.geometry?.type == "polyline"
+            return layer.geometry?.type == "point"
         })
 
-        if (!geometry || !(geometry.geometry instanceof Polyline)) return
+        if (!geometry || !(geometry.geometry instanceof Point)) return
+
+    }
+
+    const generarBuffer = async (graphics: React.RefObject<__esri.Collection<__esri.Graphic> | null>, globalLay: React.RefObject<__esri.Collection<__esri.Graphic> | null>, typeAnalysis: string)=> {
+        if (!bufferLayer.current) return
+        graphics.current = bufferLayer.current.graphics ?? null
+        if (!globalLayer.current) return
+        globalLay.current = globalLayer.current.graphics ?? null
+
+        const geometry = searchGeometry(typeAnalysis)
+        
+
+        //if (!geometry || !(geometry.geometry instanceof Polyline) || !(geometry.geometry instanceof Point)) return
         polylineGlobal(geometry);
         try {
             const bufferGeo = await geometryEngineAsync.geodesicBuffer(geometry.geometry, 100, "meters")
@@ -87,6 +98,18 @@ const CreateBuffer = ({ setBuffer }: Props) => {
         globalLay.current?.add(polyline)
     }
 
+    const searchGeometry = (typeAnalysis: string): any => {
+        if (typeAnalysis == "polylineBuffer") {
+            return graphics.current?.find((layer) => layer.geometry?.type === "polyline")
+        }
+        if (typeAnalysis == "pointBuffer") {
+            return graphics.current?.find((layer) => layer.geometry?.type === "point")
+        }
+
+        if (typeAnalysis == "polygonBuffer") {
+            return graphics.current?.find((layer) => layer.geometry?.type == "polygon")
+        }
+    }
     return null
 }
 
