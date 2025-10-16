@@ -28,20 +28,6 @@ const CreateBuffer = ({ setBuffer, typeAnalysis }: Props) => {
         }
     }, [])
 
-    const generarBufferGraphicPoint = async (graphic: React.RefObject<__esri.Collection<__esri.Graphic> | null>, globalLay: React.RefObject<__esri.Collection<__esri.Graphic> | null>) => {
-        if (!bufferLayer.current) return
-        graphics.current = bufferLayer.current.graphics ?? null
-        if (!globalLayer.current) return
-        globalLay.current = globalLayer.current.graphics ?? null
-
-        const geometry: GeometryUnion = graphics.current?.find((layer) => {
-            return layer.geometry?.type == "point"
-        })
-
-        if (!geometry || !(geometry.geometry instanceof Point)) return
-
-    }
-
     const generarBuffer = async (graphics: React.RefObject<__esri.Collection<__esri.Graphic> | null>, globalLay: React.RefObject<__esri.Collection<__esri.Graphic> | null>, typeAnalysis: string)=> {
         if (!bufferLayer.current) return
         graphics.current = bufferLayer.current.graphics ?? null
@@ -51,7 +37,6 @@ const CreateBuffer = ({ setBuffer, typeAnalysis }: Props) => {
         const geometry = searchGeometry(typeAnalysis)
         
 
-        //if (!geometry || !(geometry.geometry instanceof Polyline) || !(geometry.geometry instanceof Point)) return
         polylineGlobal(geometry);
         try {
             const bufferGeo = await geometryEngineAsync.geodesicBuffer(geometry.geometry, 100, "meters")

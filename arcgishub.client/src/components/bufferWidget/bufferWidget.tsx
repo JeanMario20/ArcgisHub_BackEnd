@@ -6,6 +6,7 @@ import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 import Polyline from "@arcgis/core/geometry/Polyline";
 import CreateBuffer from './CreateBuffer';
 import DrawPoint from './DrawPoint';
+import DrawPolygon from './DrawPolygon';
 
 interface collection {
     view: RefObject<__esri.MapView | null>,
@@ -47,14 +48,17 @@ function Div({ children }) {
 }
 
 
+
 function BufferWidget() {
     const [containerVisible, setContainerVisible] = useState(false);
     const [isDrawPolyline, setIsDrawPolyline] = useState<boolean>(false);
     const [isDrawPoint, setIsDrawPoint] = useState<boolean>(false);
+    const [isDrawPolygon, setIsDrawPolygon] = useState<boolean>(false);
     const [actualizar, setActualizar] = useState(0);
     const { clickRef } = useMap()
     const isDrawPolylineRef = useRef(isDrawPolyline)
     const isDrawPointRef = useRef(isDrawPoint)
+    const isDrawPolygonRef = useRef(isDrawPolygon)
     const { bufferLayer } = useMap()
     //const view = clickRef;
     const coordenadasPoints: number[][] = [];
@@ -62,13 +66,35 @@ function BufferWidget() {
     const trazoCounter = { trazo: 0 };
     const [activateBuffer, setActivateBuffer] = useState(false);
     const [typeBufferAnalisys, setTypeBufferAnalisys] = useState<typeAnalisys>({ type: "" });
-    //setTypeBufferAnalisys("PolylineBuffer");
+    const [labelBuDistance,setLabelBuDistance] = useState<number>()
+    const [labelBuUnit, setlabelBuUnit] = useState<string>("")
+
+    function Input({ onInputChange, typeText, name, id }: any) {
+        return (
+            <>
+                {typeText === "select" && (
+                    <select name="selectedFruit" value={labelBuUnit} id={id}>
+                        <option value="apple">Apple</option>
+                        <option value="banana">Banana</option>
+                        <option value="orange">Orange</option>
+                    </select>
+                )}
+                {typeText !== "select" && (
+                    <input type={typeText} onChange={(e) => onInputChange(e.target.value)} name={name} id={id} />
+                )}
+
+            </>
+        )
+        
+    }
+
     useEffect(() => {
         isDrawPolylineRef.current = isDrawPolyline;
         isDrawPointRef.current = isDrawPoint;
+        isDrawPolygonRef.current = isDrawPolygon
         const handlerClick = clickRef.current?.on("click", (event) => {
             if (isDrawPolylineRef.current) {
-                DibujarPolyline(clickRef, event, coordenadasPoints, trazoCounter, bufferLayer); //estoy guardando el dibujo en bufferLayer? -> Si 
+                DibujarPolyline(clickRef, event, coordenadasPoints, trazoCounter, bufferLayer)
                 coordenadasPolyline.push([event.mapPoint.longitude, event.mapPoint.latitude]);
                 setActualizar(prev => prev + 1)
                 return 
@@ -83,6 +109,9 @@ function BufferWidget() {
                 DrawPoint(props)
                 return 
             }
+            if (isDrawPolygonRef.current) {
+                DrawPolygon(clickRef, event, bufferLayer)
+            }
 
         })
         const handlerDoubleClick = clickRef.current?.on("double-click", (event) => {
@@ -95,7 +124,7 @@ function BufferWidget() {
             handlerDoubleClick?.remove();
         };
 
-    }, [isDrawPolyline, isDrawPoint, typeBufferAnalisys])
+    }, [isDrawPolyline, isDrawPoint, typeBufferAnalisys, isDrawPolygon])
 
     function ButtonAnalisis({ param, children }: ButtonProps) {
         return (
@@ -177,13 +206,22 @@ function BufferWidget() {
     function startDrawPoint() {
         setIsDrawPoint(true);
         setTypeBufferAnalisys({ type: "pointBuffer" })
-        setIsDrawPolyline(false);
+        setIsDrawPolyline(false)
+        setIsDrawPolygon(false)
     }
 
     function startDrawPolyline() {
         setIsDrawPoint(false)
-        setTypeBufferAnalisys({ type: "polylineBuffer" });
+        setTypeBufferAnalisys({ type: "polylineBuffer" })
         setIsDrawPolyline(true)
+        setIsDrawPolygon(false)
+    }
+
+    function startDrawPolygon() {
+        setIsDrawPoint(false)
+        setTypeBufferAnalisys({ type: "polygonBuffer" })
+        setIsDrawPolyline(false)
+        setIsDrawPolygon(true)
     }
 
     return (
@@ -194,15 +232,18 @@ function BufferWidget() {
                     <div id="buttonContainer">
                     <Button onClick={startDrawPolyline}>Polyline</Button>
                     <Button onClick={startDrawPoint}>Point</Button>
+                    <Button onClick={startDrawPolygon}>Polygon</Button>
                     <Button onClick={borrarPolyline}>Borrar todo</Button>
                     <Button onClick={retrocederDibujo}>Retroceder</Button>
                 </div>
-                <div id="bufferOptionsForm">
-                    <label id="bufferOptionsLabels" htmlFor="someText1">ejemplo</label>
-                    <input id="bufferOptionsInput" type="text" name="nameText1" placeholder="escribe algo" />
+                    <div id="bufferOptionsForm">
 
-                    <label id="bufferOptionsLabels" htmlFor="someText2">ejemplo</label>
-                    <input id="bufferOptionsInput" type="text" name="nameText2" placeholder="escribe algo" />
+                    <label id="bufferOptionsDistance" htmlFor="OptionsDistance">distancia del buffer</label>
+                    <Input onInputChange={setLabelBuDistance} typeText={"number"} name={"OptionsDistance"} id= {"bufferOptionsDistance"}/>
+                    
+
+                    <label id="bufferOptionsLabels" htmlFor="OptionsUnits">Tipo de unidad</label>
+                    <Input onInputChange={setLabelBuDistance} typeText={"select"} name={"OptionsUnits"} id={"bufferOptionsUnits"} />
 
                     <label id="bufferOptionsLabels" htmlFor="someText2">ejemplo</label>
                     <input id="bufferOptionsInput" type="text" name="nameText3" placeholder="escribe algo" />

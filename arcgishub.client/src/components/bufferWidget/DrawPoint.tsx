@@ -8,7 +8,7 @@ interface collection {
     coordenadasPoints: number[][],
     bufferLayer: React.RefObject<GraphicsLayer | null>,
 }
-function DrawPoint({ /*view*/ event, coordenadasPoints, bufferLayer }: collection) {
+function DrawPoint({ event, coordenadasPoints, bufferLayer }: collection) {
     const graphics = bufferLayer.current?.graphics
     const longitud = event.mapPoint.longitude
     const latitud = event.mapPoint.latitude
