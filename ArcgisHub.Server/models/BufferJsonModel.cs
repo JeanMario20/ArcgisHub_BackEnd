@@ -3,7 +3,7 @@
     public class BufferJsonModel
     {
         public InputLayer inputLayer { get; set; } = null!;
-
+        //no se usa
         public int[] distances { get; set; } = null!;
         public string units { get; set; } = null!;
         public string dissolveType { get; set; } = null!;

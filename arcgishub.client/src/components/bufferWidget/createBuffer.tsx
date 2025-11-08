@@ -60,7 +60,8 @@ const CreateBuffer = ({ setBuffer, typeAnalysis }: Props) => {
                 attributes: bufferAtt
             });
 
-            globalLay.current?.add(bufferGraphic) 
+            globalLay.current?.add(bufferGraphic)
+            const data = await retrieveDataUser();
 
             return bufferGeo
         } catch (error) {
@@ -94,6 +95,27 @@ const CreateBuffer = ({ setBuffer, typeAnalysis }: Props) => {
         if (typeAnalysis == "polygonBuffer") {
             return graphics.current?.find((layer) => layer.geometry?.type == "polygon")
         }
+    }
+
+    const retrieveDataUser = async (): any => {
+        try{
+            const res = await fetch("https://localhost:5187/api/Auth/retriveTokenData", {
+                method: "GET",
+                credentials: "include"
+            });
+
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+
+
+            const data = await res.json();
+            console.log(data)
+        }
+        catch(error){
+            console.log("ha ocurrido un error al conseguir el token" + error)
+        }
+        return true;
     }
     return null
 }
