@@ -21,7 +21,7 @@ function RegistroUsuario() {
 
     async function RegisterUserCallback() {
         try {
-            const res = await fetch("http://localhost:5186/api/Auth/Register", {
+            const res = await fetch("https://localhost:5187/api/Auth/Register", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json"
@@ -37,7 +37,7 @@ function RegistroUsuario() {
 
             const data = await res.json();
             if (data.duplicado == false) {
-                GoToPage("/Bienvenido");
+                GoToPage("/Entrandohub");
             }
             if (data.duplicado == true) {
                 alert("usuario ya se encuentra en la base de datos")

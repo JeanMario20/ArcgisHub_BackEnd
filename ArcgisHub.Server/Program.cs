@@ -4,6 +4,8 @@ using ReactJwt.Server.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+var secretKey = jwtSettings["ScretKey"];
 
 // builder.Services.AddCors(options =>
 //{
@@ -44,9 +46,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = "yourdomain.com",
-            ValidAudience = "validAudience",
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("ArcgisHub!_SuperSecureKeyForJWT_Auth_Only_Users"))
+            ValidIssuer = jwtSettings["Issuer"],
+            ValidAudience = jwtSettings["Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey!))
         };
 
 

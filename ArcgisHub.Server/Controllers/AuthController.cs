@@ -78,7 +78,7 @@ namespace ArcgisHub.Server.Controllers
         [HttpPost("Register")]
         public IActionResult Register([FromBody] UsersModels user)
         {
-            var token = GenerateJwtToken(user.userName);
+
             try
             {
                 string cmdText = "INSERT INTO users (username, password_hash, password_salt) VALUES (@username, @passwordHash, @passwordSalt)";
@@ -97,7 +97,6 @@ namespace ArcgisHub.Server.Controllers
                     cmd.Parameters.AddWithValue("@passwordSalt", user.password_salt);
                     cmd.ExecuteNonQuery();
                     mConnection.Close();
-
                 }
             }
             catch (MySqlException ex)
@@ -115,7 +114,7 @@ namespace ArcgisHub.Server.Controllers
             }
             try
             {
-
+                var token = GenerateJwtToken(user.userName);
                 Response.Cookies.Append("tokenn", token, new CookieOptions
                 {
                     HttpOnly = true,
@@ -131,7 +130,7 @@ namespace ArcgisHub.Server.Controllers
                 // Opcional: puedes seguir sin cookie pero devolver la respuesta
             }
 
-            return Ok(new { duplicado = false, nuevoUsario = true });
+            return Ok(new { duplicado = false, nuevoUsuario = true });
 
 
 
@@ -139,6 +138,11 @@ namespace ArcgisHub.Server.Controllers
 
         private string GenerateJwtToken(string username)
         {
+            var jwtSettings = _config.GetSection("JwtSettings");
+            var secretKey = jwtSettings["SecretKey"];
+            var issuer = jwtSettings["Issuer"];
+            var audience = jwtSettings["Audience"];
+
             var claims = new[]
             {
                 new Claim(Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Sub, username),
@@ -146,12 +150,12 @@ namespace ArcgisHub.Server.Controllers
 
             };
 
-            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("ArcgisHub!_SuperSecureKeyForJWT_Auth_Only_Users"));
+            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey!));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
-                issuer: "yourdomain.com",
-                audience: "validAudience",
+                issuer: issuer,
+                audience: audience,
                 claims: claims,
                 expires: DateTime.UtcNow.AddMinutes(30),
                 signingCredentials: creds);
