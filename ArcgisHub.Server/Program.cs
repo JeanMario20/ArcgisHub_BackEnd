@@ -5,7 +5,7 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
-var secretKey = jwtSettings["ScretKey"];
+var secretKey = jwtSettings["SecretKey"];
 
 // builder.Services.AddCors(options =>
 //{

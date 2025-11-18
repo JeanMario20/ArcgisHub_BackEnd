@@ -10,7 +10,9 @@ export default function Login() {
     const initialState = {
         userName: "",
         password_hash: "",
-        password_salt: ""
+        password_salt: "",
+        rol: "",
+        team: ""
     };
 
     const navigate = useNavigate();

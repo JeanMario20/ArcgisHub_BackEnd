@@ -25,9 +25,11 @@ namespace ArcgisHub.Server.Controllers
         [HttpPost("Login")]
         public IActionResult Login([FromBody] UsersModels user)
         {
-            string query = "SELECT password_hash, password_salt FROM users WHERE username = @username";
+            string query = "SELECT password_hash, password_salt, rol, team FROM users WHERE username = @username";
             MySqlConnection mConnection = new MySqlConnection(_config.GetConnectionString("DefaultConnection"));
             bool userFound = false;
+            string userRole = "";
+            string userTeam = "";
             using (var cmd = new MySqlCommand(query, mConnection))
             {
 
@@ -39,6 +41,8 @@ namespace ArcgisHub.Server.Controllers
                     {
                         string passwordHashDB = reader.GetString(0);
                         string passwordSaltDB = reader.GetString(1);
+                        userRole = reader.GetString(2);
+                        userTeam = reader.GetString(3);
                         byte[] hashByte = Convert.FromBase64String(passwordHashDB);
                         byte[] saltByte = Convert.FromBase64String(passwordSaltDB);
                         var verifyPass = PasswordHasher.PasswordHasher.VerifyPasswordHash(user.password_hash, hashByte, saltByte);
@@ -50,7 +54,7 @@ namespace ArcgisHub.Server.Controllers
 
             if (userFound == true)
             {
-                var token = GenerateJwtToken(user.userName);
+                var token = GenerateJwtToken(user.userName, userRole, userTeam);
                 Response.Cookies.Append("tokenn", token, new CookieOptions
                 {
                     HttpOnly = true,
@@ -70,7 +74,6 @@ namespace ArcgisHub.Server.Controllers
         {
             HttpContext.GetTokenAsync("Bearer", "access_token");
             var userName = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            Console.WriteLine("token Recuperado del backEnd: " + userName);
             return Ok(new { userName });
         }
 
@@ -78,16 +81,17 @@ namespace ArcgisHub.Server.Controllers
         [HttpPost("Register")]
         public IActionResult Register([FromBody] UsersModels user)
         {
-
             try
             {
-                string cmdText = "INSERT INTO users (username, password_hash, password_salt) VALUES (@username, @passwordHash, @passwordSalt)";
+                string cmdText = "INSERT INTO users (username, password_hash, password_salt, rol, team) VALUES (@username, @passwordHash, @passwordSalt, @rol, @team)";
                 MySqlConnection mConnection = new MySqlConnection(_config.GetConnectionString("DefaultConnection"));
                 PasswordHasher.PasswordHasher.CreatePasswordHash(user.password_hash, out byte[] passwordHash, out byte[] passwordSalt);
                 string hashString = Convert.ToBase64String(passwordHash);
                 string saltString = Convert.ToBase64String(passwordSalt);
                 user.password_hash = hashString;
                 user.password_salt = saltString;
+                user.rol = "usuario";
+                user.team = "NoTeam";
 
                 using (var cmd = new MySqlCommand(cmdText, mConnection))
                 {
@@ -95,6 +99,8 @@ namespace ArcgisHub.Server.Controllers
                     cmd.Parameters.AddWithValue("@username", user.userName);
                     cmd.Parameters.AddWithValue("@passwordHash", user.password_hash);
                     cmd.Parameters.AddWithValue("@passwordSalt", user.password_salt);
+                    cmd.Parameters.AddWithValue("@rol", user.rol);
+                    cmd.Parameters.AddWithValue("@team", user.team);
                     cmd.ExecuteNonQuery();
                     mConnection.Close();
                 }
@@ -114,7 +120,7 @@ namespace ArcgisHub.Server.Controllers
             }
             try
             {
-                var token = GenerateJwtToken(user.userName);
+                var token = GenerateJwtToken(user.userName, user.rol, user.team);
                 Response.Cookies.Append("tokenn", token, new CookieOptions
                 {
                     HttpOnly = true,
@@ -136,7 +142,7 @@ namespace ArcgisHub.Server.Controllers
 
         }
 
-        private string GenerateJwtToken(string username)
+        private string GenerateJwtToken(string username, string rol, string team)
         {
             var jwtSettings = _config.GetSection("JwtSettings");
             var secretKey = jwtSettings["SecretKey"];
@@ -146,6 +152,8 @@ namespace ArcgisHub.Server.Controllers
             var claims = new[]
             {
                 new Claim(Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Sub, username),
+                new Claim("rol", rol),
+                new Claim("team", team),
                 new Claim(Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
 
             };
