@@ -25,11 +25,11 @@ namespace ArcgisHub.Server.Controllers
         [HttpPost("Login")]
         public IActionResult Login([FromBody] UsersModels user)
         {
-            string query = "SELECT password_hash, password_salt, rol, team FROM users WHERE username = @username";
+            string query = "SELECT password_hash, password_salt, rol, idteam FROM users WHERE username = @username";
             MySqlConnection mConnection = new MySqlConnection(_config.GetConnectionString("DefaultConnection"));
             bool userFound = false;
             string userRole = "";
-            string userTeam = "";
+            int userTeam = 0;
             using (var cmd = new MySqlCommand(query, mConnection))
             {
 
@@ -42,7 +42,9 @@ namespace ArcgisHub.Server.Controllers
                         string passwordHashDB = reader.GetString(0);
                         string passwordSaltDB = reader.GetString(1);
                         userRole = reader.GetString(2);
-                        userTeam = reader.GetString(3);
+                        userTeam = reader.GetInt32(3);
+
+
                         byte[] hashByte = Convert.FromBase64String(passwordHashDB);
                         byte[] saltByte = Convert.FromBase64String(passwordSaltDB);
                         var verifyPass = PasswordHasher.PasswordHasher.VerifyPasswordHash(user.password_hash, hashByte, saltByte);
@@ -52,9 +54,10 @@ namespace ArcgisHub.Server.Controllers
                 mConnection.Close();
             }
 
+
             if (userFound == true)
             {
-                var token = GenerateJwtToken(user.userName, userRole, userTeam);
+                var token = GenerateJwtToken(user.userName, userRole, Convert.ToString(userTeam));
                 Response.Cookies.Append("tokenn", token, new CookieOptions
                 {
                     HttpOnly = true,
@@ -83,7 +86,7 @@ namespace ArcgisHub.Server.Controllers
         {
             try
             {
-                string cmdText = "INSERT INTO users (username, password_hash, password_salt, rol, team) VALUES (@username, @passwordHash, @passwordSalt, @rol, @team)";
+                string cmdText = "INSERT INTO users (username, password_hash, password_salt, rol, idteam) VALUES (@username, @passwordHash, @passwordSalt, @rol, @team)";
                 MySqlConnection mConnection = new MySqlConnection(_config.GetConnectionString("DefaultConnection"));
                 PasswordHasher.PasswordHasher.CreatePasswordHash(user.password_hash, out byte[] passwordHash, out byte[] passwordSalt);
                 string hashString = Convert.ToBase64String(passwordHash);
@@ -91,7 +94,7 @@ namespace ArcgisHub.Server.Controllers
                 user.password_hash = hashString;
                 user.password_salt = saltString;
                 user.rol = "usuario";
-                user.team = "NoTeam";
+                user.team = "no team";
 
                 using (var cmd = new MySqlCommand(cmdText, mConnection))
                 {
@@ -100,7 +103,7 @@ namespace ArcgisHub.Server.Controllers
                     cmd.Parameters.AddWithValue("@passwordHash", user.password_hash);
                     cmd.Parameters.AddWithValue("@passwordSalt", user.password_salt);
                     cmd.Parameters.AddWithValue("@rol", user.rol);
-                    cmd.Parameters.AddWithValue("@team", user.team);
+                    cmd.Parameters.AddWithValue("@team", 11);
                     cmd.ExecuteNonQuery();
                     mConnection.Close();
                 }
