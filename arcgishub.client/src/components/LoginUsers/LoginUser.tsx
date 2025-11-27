@@ -40,7 +40,7 @@ export default function Login() {
             if (!res.ok) {
                 throw new Error(`HTTP error! status: ${res.status}`);
             }
-
+              
             try {
                 const data = await res.json();
                 if (data == true) {

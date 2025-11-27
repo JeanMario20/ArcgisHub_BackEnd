@@ -10,6 +10,9 @@ import Register from './components/RegisterUser/RegistroUser'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import BienvenidaUsuario from './components/BienvenidaUsuario/BienvenidaUsuario'
 import HubMain from './hubMain'
+import IsAuthenticate from './components/isAuth/isAuthenticate'
+
+//import isAuthenticated from './isAuth'
 
 //import App from './App.tsx'
 
@@ -20,7 +23,11 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="" element={<Login />} />
                 <Route path="/Register" element={<Register />} />
                 <Route path="/Bienvenido" element={<BienvenidaUsuario />} />
-                <Route path="/Entrandohub" element={<HubMain/>} />
+                <Route path="/Entrandohub" element={
+                    <IsAuthenticate>
+                        <HubMain />
+                    </IsAuthenticate>}
+                />
         </Routes>
     </BrowserRouter>
   </StrictMode>,
