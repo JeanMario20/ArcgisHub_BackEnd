@@ -38,16 +38,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -56,10 +48,18 @@
               "RelativeDocumentMoniker": "arcgishub.client\\src\\components\\RegisterUser\\RegistroUser.tsx",
               "ToolTip": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\components\\RegisterUser\\RegistroUser.tsx",
               "RelativeToolTip": "arcgishub.client\\src\\components\\RegisterUser\\RegistroUser.tsx",
-              "ViewState": "AgIAADIAAAAAAAAAAAAAAD0AAABbAAAAAAAAAA==",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAswD0AAABbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
               "WhenOpened": "2025-12-02T00:38:19.699Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Document",
@@ -95,7 +95,8 @@
               "RelativeToolTip": "arcgishub.client\\src\\components\\LoginUsers\\LoginUser.tsx",
               "ViewState": "AgIAADAAAAAAAAAAAAAowEsAAABkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-11-29T16:56:42.249Z"
+              "WhenOpened": "2025-11-29T16:56:42.249Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
