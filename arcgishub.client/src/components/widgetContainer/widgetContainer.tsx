@@ -8,7 +8,9 @@ interface Props {
 export default function widgetContainer({ children }: Props) {
     return (
         <>
-            <div id='widgetContainer'>{children}</div>
+            <div className="fixed top-8">
+                <div className="flex absolute items-center border-2 border-gray-200 shadow-sm rounded-xl m-5 w-100 h-23 bg-white">{children}</div>
+            </div>
         </>
 
     )

@@ -7,7 +7,6 @@ import BufferTemplate from './components/bufferWidget/bufferWidget'
 import { MapContext } from './context/viewContext'
 import JoinTeamsConfig from './components/joinTeamsConfig/JoinTeamsConfig'
 
-
 export default function HubMain() {
     return (
     <>
@@ -16,7 +15,7 @@ export default function HubMain() {
             <MapView>
                 <WidgetContainer>
                     <BufferTemplate />
-                    <JoinTeamsConfig/>
+                    <JoinTeamsConfig />
                 </WidgetContainer>
             </MapView>
         </MapContext>

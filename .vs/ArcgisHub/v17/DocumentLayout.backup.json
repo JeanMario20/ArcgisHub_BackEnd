@@ -3,8 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|c:\\users\\jean9\\documents\\programacion\\arcgishub\\arcgishub.client\\src\\components\\registeruser\\registrouser.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|solutionrelative:arcgishub.client\\src\\components\\registeruser\\registrouser.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+      "AbsoluteMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|c:\\users\\jean9\\documents\\programacion\\arcgishub\\arcgishub.client\\src\\components\\bufferwidget\\bufferwidget.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|solutionrelative:arcgishub.client\\src\\components\\bufferwidget\\bufferwidget.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|c:\\users\\jean9\\documents\\programacion\\arcgishub\\arcgishub.client\\src\\components\\buttonwidgets\\buttonwidget.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|solutionrelative:arcgishub.client\\src\\components\\buttonwidgets\\buttonwidget.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|c:\\users\\jean9\\documents\\programacion\\arcgishub\\arcgishub.client\\src\\context\\viewcontext.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|solutionrelative:arcgishub.client\\src\\context\\viewcontext.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|c:\\users\\jean9\\documents\\programacion\\arcgishub\\arcgishub.client\\src\\hubmain.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|solutionrelative:arcgishub.client\\src\\hubmain.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|c:\\users\\jean9\\documents\\programacion\\arcgishub\\arcgishub.client\\src\\components\\jointeamsconfig\\jointeamsconfig.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|solutionrelative:arcgishub.client\\src\\components\\jointeamsconfig\\jointeamsconfig.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|c:\\users\\jean9\\documents\\programacion\\arcgishub\\arcgishub.client\\src\\components\\mapview\\mapview.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|solutionrelative:arcgishub.client\\src\\components\\mapview\\mapview.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|c:\\users\\jean9\\documents\\programacion\\arcgishub\\arcgishub.client\\src\\components\\widgetcontainer\\widgetcontainer.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|solutionrelative:arcgishub.client\\src\\components\\widgetcontainer\\widgetcontainer.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|c:\\users\\jean9\\documents\\programacion\\arcgishub\\arcgishub.client\\src\\components\\loginusers\\loginuser.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
@@ -13,10 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|c:\\users\\jean9\\documents\\programacion\\arcgishub\\arcgishub.client\\src\\index.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|solutionrelative:arcgishub.client\\src\\index.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|c:\\users\\jean9\\documents\\programacion\\arcgishub\\arcgishub.client\\src\\hubmain.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|solutionrelative:arcgishub.client\\src\\hubmain.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4B282F05-2F3F-3EB3-9F92-64D59E9AF2D3}|arcgishub.client\\arcgishub.client.esproj|c:\\users\\jean9\\documents\\programacion\\arcgishub\\arcgishub.client\\src\\main.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
@@ -38,20 +58,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "RegistroUser.tsx",
-              "DocumentMoniker": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\components\\RegisterUser\\RegistroUser.tsx",
-              "RelativeDocumentMoniker": "arcgishub.client\\src\\components\\RegisterUser\\RegistroUser.tsx",
-              "ToolTip": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\components\\RegisterUser\\RegistroUser.tsx",
-              "RelativeToolTip": "arcgishub.client\\src\\components\\RegisterUser\\RegistroUser.tsx",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAswD0AAABbAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "hubMain.tsx",
+              "DocumentMoniker": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\hubMain.tsx",
+              "RelativeDocumentMoniker": "arcgishub.client\\src\\hubMain.tsx",
+              "ToolTip": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\hubMain.tsx",
+              "RelativeToolTip": "arcgishub.client\\src\\hubMain.tsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-12-02T00:38:19.699Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T17:17:25.813Z",
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -63,19 +83,80 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "hubMain.tsx",
-              "DocumentMoniker": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\hubMain.tsx",
-              "RelativeDocumentMoniker": "arcgishub.client\\src\\hubMain.tsx",
-              "ToolTip": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\hubMain.tsx",
-              "RelativeToolTip": "arcgishub.client\\src\\hubMain.tsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAACAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "viewContext.tsx",
+              "DocumentMoniker": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\context\\viewContext.tsx",
+              "RelativeDocumentMoniker": "arcgishub.client\\src\\context\\viewContext.tsx",
+              "ToolTip": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\context\\viewContext.tsx",
+              "RelativeToolTip": "arcgishub.client\\src\\context\\viewContext.tsx",
+              "ViewState": "AgIAACAAAAAAAAAAAAAnwBMAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-11-29T17:17:25.813Z"
+              "WhenOpened": "2025-12-02T17:37:16.896Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "ButtonWidget.tsx",
+              "DocumentMoniker": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\components\\ButtonWidgets\\ButtonWidget.tsx",
+              "RelativeDocumentMoniker": "arcgishub.client\\src\\components\\ButtonWidgets\\ButtonWidget.tsx",
+              "ToolTip": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\components\\ButtonWidgets\\ButtonWidget.tsx",
+              "RelativeToolTip": "arcgishub.client\\src\\components\\ButtonWidgets\\ButtonWidget.tsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-12-03T00:00:43.923Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "bufferWidget.tsx",
+              "DocumentMoniker": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\components\\bufferWidget\\bufferWidget.tsx",
+              "RelativeDocumentMoniker": "arcgishub.client\\src\\components\\bufferWidget\\bufferWidget.tsx",
+              "ToolTip": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\components\\bufferWidget\\bufferWidget.tsx",
+              "RelativeToolTip": "arcgishub.client\\src\\components\\bufferWidget\\bufferWidget.tsx",
+              "ViewState": "AgIAAG4BAAAAAAAAAAAAAIUBAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-12-03T00:55:34.077Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "JoinTeamsConfig.tsx",
+              "DocumentMoniker": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\components\\joinTeamsConfig\\JoinTeamsConfig.tsx",
+              "RelativeDocumentMoniker": "arcgishub.client\\src\\components\\joinTeamsConfig\\JoinTeamsConfig.tsx",
+              "ToolTip": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\components\\joinTeamsConfig\\JoinTeamsConfig.tsx",
+              "RelativeToolTip": "arcgishub.client\\src\\components\\joinTeamsConfig\\JoinTeamsConfig.tsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-12-03T00:03:15.754Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MapView.tsx",
+              "DocumentMoniker": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\components\\MapView\\MapView.tsx",
+              "RelativeDocumentMoniker": "arcgishub.client\\src\\components\\MapView\\MapView.tsx",
+              "ToolTip": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\components\\MapView\\MapView.tsx",
+              "RelativeToolTip": "arcgishub.client\\src\\components\\MapView\\MapView.tsx",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAgwD0AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-12-02T17:42:03.492Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "widgetContainer.css",
+              "DocumentMoniker": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\components\\widgetContainer\\widgetContainer.css",
+              "RelativeDocumentMoniker": "arcgishub.client\\src\\components\\widgetContainer\\widgetContainer.css",
+              "ToolTip": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\components\\widgetContainer\\widgetContainer.css",
+              "RelativeToolTip": "arcgishub.client\\src\\components\\widgetContainer\\widgetContainer.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-12-02T17:16:46.018Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "index.css",
               "DocumentMoniker": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\index.css",
               "RelativeDocumentMoniker": "arcgishub.client\\src\\index.css",
@@ -87,7 +168,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "LoginUser.tsx",
               "DocumentMoniker": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\components\\LoginUsers\\LoginUser.tsx",
               "RelativeDocumentMoniker": "arcgishub.client\\src\\components\\LoginUsers\\LoginUser.tsx",
@@ -95,12 +176,11 @@
               "RelativeToolTip": "arcgishub.client\\src\\components\\LoginUsers\\LoginUser.tsx",
               "ViewState": "AgIAADAAAAAAAAAAAAAowEsAAABkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-11-29T16:56:42.249Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-29T16:56:42.249Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "main.tsx",
               "DocumentMoniker": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\main.tsx",
               "RelativeDocumentMoniker": "arcgishub.client\\src\\main.tsx",
@@ -112,7 +192,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "tailwind.css",
               "DocumentMoniker": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\src\\tailwind.css",
               "RelativeDocumentMoniker": "arcgishub.client\\src\\tailwind.css",
@@ -124,7 +204,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "vite.config.ts",
               "DocumentMoniker": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\vite.config.ts",
               "RelativeDocumentMoniker": "arcgishub.client\\vite.config.ts",

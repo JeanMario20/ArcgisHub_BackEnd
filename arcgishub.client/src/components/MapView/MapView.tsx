@@ -5,6 +5,7 @@ import Map from "@arcgis/core/Map"
 import MapView from "@arcgis/core/views/MapView"
 import { useContext, useEffect } from "react"
 import { useMap } from "../../context/viewContext";
+import DefaultUI from "@arcgis/core/views/ui/DefaultUI.js";
 
 interface Props {
     children?: React.ReactNode;
@@ -37,6 +38,8 @@ function ShowMap({ children }: Props) {
         })
         
         clickRef.current = view;
+        view.ui.components = []
+
 
         /*const anotherMap = document.getElementsByClassName('esri-view-user-storage');
 
