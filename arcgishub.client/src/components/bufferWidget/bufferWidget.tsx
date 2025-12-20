@@ -41,9 +41,13 @@ function Div({ children }) {
     )
 }
 
+interface Props{
+    containerVisibleWidget: string
+    setContainerVisibleWidget: React.Dispatch<React.SetStateAction<string>>;
+}
 
 
-function BufferWidget() {
+function BufferWidget({ containerVisibleWidget, setContainerVisibleWidget }: Props) {
     const [containerVisible, setContainerVisible] = useState(false);
     const [isDrawPolyline, setIsDrawPolyline] = useState<boolean>(false);
     const [isDrawPoint, setIsDrawPoint] = useState<boolean>(false);
@@ -114,7 +118,7 @@ function BufferWidget() {
         );
     };
 
-    const ButtonInforme: React.FC<ButtonInformeProps> = ({ onClick, activate, isReady, children }) => {
+    const ButtonInforme: React.FC<ButtonInformeProps> = ({ onClick, activate, isReady, children }) => { //el isReady se activara cuando se finalice el analisis del buffer
         return (
             //dos if iternarios
             <>
@@ -315,26 +319,26 @@ function BufferWidget() {
     return (
         <>
             <ButtonWidget
-                onClick={() => setContainerVisible(!containerVisible)}
+                onClick={() => containerVisibleWidget === "buferAnalis" ? setContainerVisibleWidget("") : setContainerVisibleWidget("buferAnalis")}
                 buttonClass="flex items-center justify-center w-14 h-14  transition duration-100 bg-sky-300 hover:bg-sky-600 active:bg-sky-800  rounded-xl overflow-visible ml-3 mr-3 cursor-pointer"
                 svgClass="w-10 h-10 text-gray-800 dark:text-white"
                 d="M360-240v-80h480v80H360Zm0-200v-80h480v80H360ZM120-640v-80h720v80H120Z"
                 viewBox="0 -960 960 960"
             />
-            {containerVisible &&
+            {containerVisibleWidget === "buferAnalis" ?
                 <div>
-                    {/*<Button onClick={startDrawPolyline()}>Polyline</Button>*/}
+                    {/*<Button onClick={startDrawPolyline()}>Polyline</Button>
                     <Button onClick={startDrawPoint}>Point</Button>
                     <Button onClick={startDrawPolygon}>Polygon</Button>
                     <Button onClick={borrarPolyline}>Borrar todo</Button>
-                    <Button onClick={retrocederDibujo}>Retroceder</Button>
+                    <Button onClick={retrocederDibujo}>Retroceder</Button>*/}
 
                     <div className='fixed border-2 border-gray-200 shadow-sm rounded-xl bg-white m-5 w-100 h-150 top-35 left-1'>
                         <div className='flex items-center justify-center bg-blue-700 w-auto rounded-xl h-10 text-white font-bold '>
                             <p>Analisis Buffer</p>
 
-                            <button onClick={appearsWidget}>
-                                <svg className="absolute top-3 left-90 w-5 h-5 text-gray-800 dark:text-white cursor-pointer" onClick={appearsWidgetContainer} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <button onClick={() => setContainerVisibleWidget("")}>
+                                <svg className="absolute top-3 left-90 w-5 h-5 text-gray-800 dark:text-white cursor-pointer" onClick={() => setContainerVisibleWidget("")} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
                                 </svg>
                             </button>
@@ -409,14 +413,18 @@ function BufferWidget() {
                         </form>
                     </div>
                 </div>
-            }
+                : null}
         </>
     )
 }
+interface Props {
+    containerVisibleWidget: string;
+    setContainerVisibleWidget: React.Dispatch<React.SetStateAction<string>>;
+}
 
-export default function BufferTemplate() {
+export default function BufferTemplate({ containerVisibleWidget, setContainerVisibleWidget }: Props) {
     return (
-        <BufferWidget />
+        <BufferWidget containerVisibleWidget={containerVisibleWidget} setContainerVisibleWidget={setContainerVisibleWidget} />
     )
 }
 

@@ -9,6 +9,7 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="src\components\formsWidget\" />
     <Folder Include="src\components\MapView\" />
     <Folder Include="src\components\widgetContainer\" />
   </ItemGroup>

@@ -10,7 +10,7 @@ interface ButtonProps {
 
 const ButtonWidget: React.FC<ButtonProps> = ({ onClick, buttonClass, svgClass, d, viewBox }) => {
     return (
-        <button onClick={onClick} className={buttonClass} >
+        <button onClick={onClick} className={buttonClass}>
             <svg className={svgClass} viewBox={viewBox}>
                 <path d={d}/>
             </svg>
