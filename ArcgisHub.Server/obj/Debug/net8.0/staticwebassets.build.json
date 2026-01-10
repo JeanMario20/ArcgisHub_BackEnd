@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "Hash": "S4vHklBrfYWChG3TBhmGxaCbx9cf1qlp87VYygtrHU0=",
+  "Hash": "+EplDiBwk+QQwPGnz1T/Tq/KklcnnjmI4alwhme2/r4=",
   "Source": "ArcgisHub.Server",
   "BasePath": "_content/ArcgisHub.Server",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\arcgishub.client\\arcgishub.client.esproj",
+      "Identity": "/home/jean98763/Documents/programacion/codigo/arcgisHub/ArcgisHub_BackEnd/arcgishub.client/arcgishub.client.esproj",
       "Version": 2,
       "Source": "arcgishub.client",
       "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
@@ -19,6 +19,5 @@
     }
   ],
   "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "Assets": []
 }

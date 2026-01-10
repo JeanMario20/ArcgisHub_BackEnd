@@ -4,7 +4,7 @@ import { useMap } from '../../context/viewContext';
 import Graphic from "@arcgis/core/Graphic.js"
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 import Polyline from "@arcgis/core/geometry/Polyline";
-import CreateBuffer from './CreateBuffer';
+import CreateBuffer from './createBuffer';
 import DrawPoint from './DrawPoint';
 import DrawPolygon from './DrawPolygon';
 import ButtonWidget from '../ButtonWidgets/ButtonWidget';
@@ -22,17 +22,17 @@ interface typeAnalisys {
 
 
 interface ButtonProps {
-    onClick: React.MouseEventHandler<HTMLButtonElement>;
+    //onClick: () => void;
     children: React.ReactNode;
 }
 
-function Button({ onClick, children }: ButtonProps) {
+/*function Button({ onClick, children }: ButtonProps) {
     return (
         <button onClick={onClick}>
             {children}
         </button>
     )
-}
+}*/
 
 
 function Div({ children }) {
@@ -64,7 +64,7 @@ function BufferWidget({ containerVisibleWidget, setContainerVisibleWidget }: Pro
     const coordenadasPoints: number[][] = [];
     const coordenadasPolyline: number[] = []
     const trazoCounter = { trazo: 0 };
-    const [activateBuffer, setActivateBuffer] = useState(true);
+    const [activateBuffer, setActivateBuffer] = useState(false);
     const [typeBufferAnalisys, setTypeBufferAnalisys] = useState<typeAnalisys>({ type: "" });
     const [labelBuDistance,setLabelBuDistance] = useState<number>()
     const [labelBuUnit, setlabelBuUnit] = useState<string>("")
@@ -143,7 +143,7 @@ function BufferWidget({ containerVisibleWidget, setContainerVisibleWidget }: Pro
                 {
                     activate ? (
                         <div className="fixed top-134 left-54">
-                            {/* div botón para mostrar los tipos de informes para cuando esté listo el análisis más reciente */}
+                            {/* div botï¿½n para mostrar los tipos de informes para cuando estï¿½ listo el anï¿½lisis mï¿½s reciente */}
                             <button type="button" className="w-15 h-11 mr-2 cursor-pointer bg-gray-200 rounded-xl">
                                 excel
                             </button>
@@ -200,9 +200,9 @@ function BufferWidget({ containerVisibleWidget, setContainerVisibleWidget }: Pro
 
     }, [isDrawPolyline, isDrawPoint, typeBufferAnalisys, isDrawPolygon])
 
-    function ButtonAnalisis({ param, children }: ButtonProps) {
+    function ButtonAnalisis({ children }: ButtonProps) {
         return (
-            <button onClick={() => EjecutarAnalisis()}>
+            <button type="button" onClick={() => setActivateBuffer(true)} className='w-40 h-11 mr-2 cursor-pointer bg-gray-200 rounded-xl hover:bg-sky-400'>
                 {children}
             </button>
         )
@@ -211,6 +211,9 @@ function BufferWidget({ containerVisibleWidget, setContainerVisibleWidget }: Pro
         setActivateBuffer(true)
     }
 
+    function setChangedBuffer() {
+        setActivateBuffer(false);
+    }
     
 
     function borrarPolyline() {
@@ -218,9 +221,6 @@ function BufferWidget({ containerVisibleWidget, setContainerVisibleWidget }: Pro
 
     }
 
-    function setChangedBuffer() {
-        setActivateBuffer(false);
-    }
     function retrocederDibujo() {
         const graphics = bufferLayer.current?.graphics
         if (!graphics || graphics.length === 0) return;
@@ -393,7 +393,7 @@ function BufferWidget({ containerVisibleWidget, setContainerVisibleWidget }: Pro
 
                             </div>
 
-                            <p className='mt-2'>Especificación de área analisis.</p>
+                            <p className='mt-2'>Especificacion de Area analisis.</p>
 
                             <div>
                                 <label className='block mt-2 mb-3' htmlFor="label">Introduce valor</label>
@@ -403,6 +403,8 @@ function BufferWidget({ containerVisibleWidget, setContainerVisibleWidget }: Pro
 
                             <div className='mt-10'>
                                 <button type="button" className='w-40 h-11 mr-2 cursor-pointer bg-gray-200 rounded-xl hover:bg-sky-400'>Ejecutar Analisis</button>
+                                <ButtonAnalisis>Ejecutar Analisis prueba</ButtonAnalisis>
+                                {activateBuffer && <CreateBuffer setBuffer={setChangedBuffer} typeAnalysis={typeBufferAnalisys.type}/>}
                                 <ButtonInforme
                                     onClick={muestraInforme}
                                     activate={toggleButtonInforme}

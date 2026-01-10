@@ -9,7 +9,7 @@
       "ArcgisHub.Server/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.8",
-          "Microsoft.AspNetCore.SpaProxy": "8.0.21",
+          "Microsoft.AspNetCore.SpaProxy": "8.0.22",
           "Microsoft.EntityFrameworkCore.Design": "8.0.5",
           "Microsoft.IdentityModel.JsonWebTokens": "8.14.0",
           "Microsoft.IdentityModel.Tokens": "8.14.0",
@@ -86,11 +86,11 @@
           }
         }
       },
-      "Microsoft.AspNetCore.SpaProxy/8.0.21": {
+      "Microsoft.AspNetCore.SpaProxy/8.0.22": {
         "runtime": {
           "lib/net8.0/Microsoft.AspNetCore.SpaProxy.dll": {
-            "assemblyVersion": "8.0.21.0",
-            "fileVersion": "8.0.2125.47515"
+            "assemblyVersion": "8.0.22.0",
+            "fileVersion": "8.0.2225.52808"
           }
         }
       },
@@ -543,27 +543,27 @@
           "runtimes/win-x64/native/comerr64.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "4.3.0.1"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/gssapi64.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "4.3.0.1"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/k5sprt64.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "4.3.0.1"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/krb5_64.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "4.3.0.1"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/krbcc64.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "4.3.0.1"
+            "fileVersion": "0.0.0.0"
           }
         }
       },
@@ -910,12 +910,12 @@
       "path": "microsoft.aspnetcore.authentication.jwtbearer/8.0.8",
       "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.8.0.8.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.SpaProxy/8.0.21": {
+    "Microsoft.AspNetCore.SpaProxy/8.0.22": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-wM7xZ0sWE4ASH5w7rw6zqRmfoeEA/mkgZw+KQUfDG/x48r9+8T5vTDjtKWPeBYeLczUR0wjKsU6h3pL6cdOCxA==",
-      "path": "microsoft.aspnetcore.spaproxy/8.0.21",
-      "hashPath": "microsoft.aspnetcore.spaproxy.8.0.21.nupkg.sha512"
+      "sha512": "sha512-CFnPIbLHsuLKKsJNC1wMFaeKvxRfDS8fnVzDxLdCI6kMbHB91tCLOm8+rPpAGV99VJSFNhduLEWx22Zjw30wag==",
+      "path": "microsoft.aspnetcore.spaproxy/8.0.22",
+      "hashPath": "microsoft.aspnetcore.spaproxy.8.0.22.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
       "type": "package",

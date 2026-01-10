@@ -1,9 +1,9 @@
 {
 "SpaProxyServer": {
-"ServerUrl": "https://localhost:62593",
+"ServerUrl": "https://localhost:62594",
 "RedirectUrl": "",
 "LaunchCommand": "npm run dev",
-"WorkingDirectory": "C:\\Users\\jean9\\Documents\\programacion\\ArcgisHub\\ArcgisHub.Server\\..\\arcgishub.client",
+"WorkingDirectory": "/home/jean98763/Documents/programacion/codigo/arcgisHub/ArcgisHub_BackEnd/ArcgisHub.Server/../arcgishub.client",
 "MaxTimeoutInSeconds": "120",
 "KeepRunning": "false"
 }

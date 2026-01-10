@@ -1,1 +1,2 @@
-C:\Users\jean9\Documents\programacion\ArcgisHub\arcgishub.client\obj\Debug\arcgishub.client.esproj.CoreCompileInputs.cache
+C:/Users/jean9/Documents/programacion/ArcgisHub/arcgishub.client/obj/Debug/arcgishub.client.esproj.CoreCompileInputs.cache
+/home/jean98763/Documents/programacion/codigo/arcgisHub/ArcgisHub_BackEnd/arcgishub.client/obj/Debug/arcgishub.client.esproj.CoreCompileInputs.cache

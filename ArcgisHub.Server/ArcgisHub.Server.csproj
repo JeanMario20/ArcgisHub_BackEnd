@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <SpaRoot>..\arcgishub.client</SpaRoot>
     <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
-    <SpaProxyServerUrl>https://localhost:62593</SpaProxyServerUrl>
+    <SpaProxyServerUrl>https://localhost:62594</SpaProxyServerUrl>
   </PropertyGroup>
 
   <ItemGroup>

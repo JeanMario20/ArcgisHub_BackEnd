@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 //import "@arcgis/map-components";
-import "./mapView.css"
+import "./MapView.css"
 import Map from "@arcgis/core/Map"
 import MapView from "@arcgis/core/views/MapView"
 import { useContext, useEffect } from "react"
