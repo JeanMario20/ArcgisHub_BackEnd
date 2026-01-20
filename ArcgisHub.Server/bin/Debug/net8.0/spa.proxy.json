@@ -1,6 +1,6 @@
 {
 "SpaProxyServer": {
-"ServerUrl": "https://localhost:62594",
+"ServerUrl": "https://localhost:62593",
 "RedirectUrl": "",
 "LaunchCommand": "npm run dev",
 "WorkingDirectory": "/home/jean98763/Documents/programacion/codigo/arcgisHub/ArcgisHub_BackEnd/ArcgisHub.Server/../arcgishub.client",

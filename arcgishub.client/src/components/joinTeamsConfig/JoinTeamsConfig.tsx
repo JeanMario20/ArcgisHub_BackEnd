@@ -1,5 +1,46 @@
 import ButtonWidget from '../ButtonWidgets/ButtonWidget';
 
+interface fecthProps {
+    data: string;
+}
+
+async function joinTeam({data}: fecthProps) : Promise<string> {
+    const response = await fetch("https://localhost:5187/api/Team/JoinTeam",{
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json',
+        },
+        body: JSON.stringify({ idTeamToJoin: data }),
+        credentials: "include"
+    });
+
+    if(!response.ok){
+        throw new Error("hubo un error al intentar unirse al equipo")
+    }
+    const dataResponse = await response.json()
+    
+    if(dataResponse.success){
+        const mensajes: Record<number, string> = {
+            1: "Bienvenido al equipo Sky",
+            2: "Bienvenido al equipo Rock",
+            3: "Bienvenido al equipo Petroleros",
+            9: "Bienvenido al equipo Eco",
+        };
+
+        const mensaje = mensajes[dataResponse.team];
+        if(mensaje){
+            alert(mensaje)
+        }
+    }
+
+    if(dataResponse.success == false){
+        alert("ya pertenece a un equipo hable con el admin para un cambio de equipo");
+    }
+
+    return "finalizado"
+    
+}
+
 interface Props {
     containerVisibleWidget: string;
     setContainerVisibleWidget: React.Dispatch<React.SetStateAction<string>>;
@@ -24,6 +65,14 @@ function JoinTeamsConfig({ containerVisibleWidget, setContainerVisibleWidget }: 
                         </svg>
                     </button>
                 </div>
+
+                <button onClick={async () => {await joinTeam({data:"1"})}}>unirte al equipo sky</button>
+                <br />
+                <button onClick={async () => {await joinTeam({data:"2"})}}>unirte al equipo Rock</button>
+                <br />
+                <button onClick={async () => {await joinTeam({data:"3"})}}>unirte al equipo Petroleros</button>
+                <br />
+                <button onClick={async () => {await joinTeam({data:"9"})}}>unirte al equipo Eco</button>
             </div>: null
                 
             }
