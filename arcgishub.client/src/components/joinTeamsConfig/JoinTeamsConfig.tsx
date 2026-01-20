@@ -41,6 +41,24 @@ async function joinTeam({data}: fecthProps) : Promise<string> {
     
 }
 
+interface ButtonProps {
+    children: string;
+    onClick : () => void;
+    colorButton: string;
+}
+
+const ButtonJoinTeam: React.FC<ButtonProps> = ({children,onClick,colorButton}) => {
+    return(
+        <button 
+            onClick={onClick} 
+            type="submit" 
+            className={`m-2 p-4 border border-black rounded-xl cursor-pointer w-85 text-white ${colorButton}`}>
+                {children}
+        </button>
+    )
+}
+
+
 interface Props {
     containerVisibleWidget: string;
     setContainerVisibleWidget: React.Dispatch<React.SetStateAction<string>>;
@@ -66,13 +84,14 @@ function JoinTeamsConfig({ containerVisibleWidget, setContainerVisibleWidget }: 
                     </button>
                 </div>
 
-                <button onClick={async () => {await joinTeam({data:"1"})}}>unirte al equipo sky</button>
+                <ButtonJoinTeam colorButton='bg-sky-500' onClick={async () => {await joinTeam({data:"1"})}}>Unirte al equipo Sky</ButtonJoinTeam>
                 <br />
-                <button onClick={async () => {await joinTeam({data:"2"})}}>unirte al equipo Rock</button>
+                <ButtonJoinTeam colorButton='bg-stone-600' onClick={async () => {await joinTeam({data:"2"})}}>Unirte al equipo Rock</ButtonJoinTeam>
                 <br />
-                <button onClick={async () => {await joinTeam({data:"3"})}}>unirte al equipo Petroleros</button>
+                <ButtonJoinTeam colorButton='bg-yellow-500' onClick={async () => {await joinTeam({data:"3"})}}>Unirte al equipo Petroleros</ButtonJoinTeam>
                 <br />
-                <button onClick={async () => {await joinTeam({data:"9"})}}>unirte al equipo Eco</button>
+                <ButtonJoinTeam colorButton='bg-green-600' onClick={async () => {await joinTeam({data:"9"})}}>Unirte al equipo Eco</ButtonJoinTeam>
+                
             </div>: null
                 
             }
