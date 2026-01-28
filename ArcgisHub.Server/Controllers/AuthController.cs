@@ -94,7 +94,7 @@ namespace ArcgisHub.Server.Controllers
                 user.password_hash = hashString;
                 user.password_salt = saltString;
                 user.rol = "usuario";
-                user.team = "no team";
+                user.team = "10";
 
                 using (var cmd = new MySqlCommand(cmdText, mConnection))
                 {
@@ -103,7 +103,7 @@ namespace ArcgisHub.Server.Controllers
                     cmd.Parameters.AddWithValue("@passwordHash", user.password_hash);
                     cmd.Parameters.AddWithValue("@passwordSalt", user.password_salt);
                     cmd.Parameters.AddWithValue("@rol", user.rol);
-                    cmd.Parameters.AddWithValue("@team", 11);
+                    cmd.Parameters.AddWithValue("@team", 10);
                     cmd.ExecuteNonQuery();
                     mConnection.Close();
                 }

@@ -25,6 +25,26 @@ namespace ArcgisHub.Server.Controllers
         }
 
         [Authorize]
+        [HttpGet("showSettings")]
+        public IActionResult ShowSettings()
+        {
+            var userName = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var teamValue = Convert.ToInt32(User.FindFirst("team")?.Value);
+            
+            if(teamValue == 10)
+            {
+                var response = new {ShowSettings = true};
+                return Ok(response);
+            }
+            else
+            {
+                var response = new{ShowSettings = false};
+                return Ok(response);
+            }
+            
+        }
+
+        [Authorize]
         [HttpPost("JoinTeam")]
         public IActionResult JointTeam([FromBody] TeamModels team)
         {
